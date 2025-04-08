@@ -1,6 +1,6 @@
-// YOUR NAME:
+// YOUR NAME: Ethan Luong
 // COLLABORATORS:
-// LAST MODIFIED DATE: 
+// LAST MODIFIED DATE: 4/6/25
 /*
 Yearly Global Atmospheric CO₂ Levels (parts per million)
 2001: 371.32 ppm
@@ -33,14 +33,45 @@ class Main
   public static void main(String[] args) 
   {
 		// DECLARATION SECTION
+    double[] co2Levels = new double[20];
+    int[] years = new int[20];
 
 		// INITIALIZATION SECTION
+    co2Levels[0] = 371.32;
+    co2Levels[1] = 373.45;
+    co2Levels[2] = 375.98;
+    co2Levels[3] = 377.70;
+    co2Levels[4] = 379.98;
+    co2Levels[5] = 382.09;
+    co2Levels[6] = 384.03;
+    co2Levels[7] = 385.83;
+    co2Levels[8] = 387.64;
+    co2Levels[9] = 390.10;
+    co2Levels[10] = 391.85;
+    co2Levels[11] = 394.06;
+    co2Levels[12] = 396.74;
+    co2Levels[13] = 398.87;
+    co2Levels[14] = 401.01;
+    co2Levels[15] = 404.41;
+    co2Levels[16] = 406.76;
+    co2Levels[17] = 408.72;
+    co2Levels[18] = 411.66;
+    co2Levels[19] = 414.24;
+
+    for (int i = 0; i < years.length; i++) {
+      years[i] = 2001 + i;
+    }
 
 		// INPUT SECTION 
 
 		// PROCESSING SECTION
+    printGraph(co2Levels, years);
+
+    double average = (co2Levels[co2Levels.length-1] + co2Levels[0]) / co2Levels.length;
 
 		// OUTPUT SECTION
+
+    System.out.println("From 2001 to 2020, the average atmospheric CO₂ levels across the globe has grown " + average + " ppm.");
   
     //Explanation of oil drum units
     System.out.println("\nData displayed for each year begins at 360 ppm.\nEach additional oil drum (🛢 ) represents an additional 10 ppm.\n");
@@ -49,6 +80,21 @@ class Main
     System.out.print("Year");
     UtilityBelt.printCentered(55,"CO₂ in Atmosphere (ppm)");
 
+  }
+
+  public static void printBar(double co2Level) {
+    if (co2Level <= 360) return;
+    int remainder = (int) (co2Level - 360.0);
+    for (int i = 0; i < remainder; i++) System.out.print("🛢");
+    System.out.print(" " + co2Level);
+  }
+
+  public static void printGraph(double[] levels, int[] years) {
+    for (int i = 0; i < years.length; i++) {
+      System.out.print(years[i] + " ");
+      printBar(levels[i]);
+      System.out.print("\n");
+    }
   }
 
 }
